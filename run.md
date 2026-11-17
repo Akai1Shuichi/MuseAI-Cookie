@@ -8,7 +8,7 @@ git commit -m "Mô tả thay đổi"
 git push origin master
 
 # Tạo tag phát hành (ví dụ v1.0)
-git tag -a v1.0 -m "Google Flow AI v1.0"
+git tag -a v1.0 -m "MuseAI-Cookie v1.0"
 
 # Push tag để kích hoạt build và tạo GitHub Release
 git push origin v1.0
@@ -26,6 +26,6 @@ git tag -d v1.0
 git push origin --delete v1.0
 
 # Tạo lại tag tại commit hiện tại và push để kích hoạt workflow lần nữa
-git tag -a v1.0 -m "Google Flow AI v1.0"
+git tag -a v1.0 -m "MuseAI-Cookie v1.0"
 git push origin v1.0
 ```

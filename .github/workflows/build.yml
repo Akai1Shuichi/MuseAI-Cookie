@@ -47,14 +47,24 @@ jobs:
           fs.writeFileSync('release-notes.md', `${notes}\n`);
           NODE
 
+      - name: Package extension zip (files at zip root, no nested folder)
+        run: |
+          ZIP_NAME="MuseAI-Cookie-$RELEASE_TAG.zip"
+          git archive --format=zip -o "$ZIP_NAME" HEAD -- . \
+            ':!.github' ':!.gitignore' ':!*.test.js' ':!run.md'
+          unzip -l "$ZIP_NAME"
+          echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
+
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
             gh release edit "$RELEASE_TAG" --notes-file release-notes.md
+            gh release upload "$RELEASE_TAG" "$ZIP_NAME" --clobber
           else
             gh release create "$RELEASE_TAG" --verify-tag \
-              --title "Google Flow AI Auto-Generator $RELEASE_TAG" \
-              --notes-file release-notes.md
+              --title "MuseAI-Cookie $RELEASE_TAG" \
+              --notes-file release-notes.md \
+              "$ZIP_NAME"
           fi
