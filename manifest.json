@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "MuseAI Cookie Import/Export",
+  "version": "1.0.0",
+  "description": "Xuất và nhập cookie đăng nhập muse.ai",
+  "author": "botoit",
+  "homepage_url": "https://botocit.com",
+  "permissions": ["cookies"],
+  "host_permissions": ["https://muse.ai/*", "https://*.muse.ai/*"],
+  "action": {
+    "default_title": "Muse Cookie",
+    "default_popup": "popup.html"
+  }
+}
